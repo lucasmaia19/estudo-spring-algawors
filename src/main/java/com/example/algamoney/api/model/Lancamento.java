@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "lancamento")
@@ -22,20 +23,33 @@ public class Lancamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	private String descrição;
+	private String descricao;
 	
+	@NotNull
 	@Column (name = "data_vencimento")
 	private LocalDate dataVencimento;
 	
 	@Column(name = "data_pagamento")
 	private LocalDate dataPagamento;
 	
+	@NotNull
 	private BigDecimal valor;
 	
 	private String observacao;
 	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoLancamento tipo;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "codigo_categoria")
+	private Categoria categoria;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "codigo_pessoa")
+	private Pessoa pessoa;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -70,12 +84,12 @@ public class Lancamento {
 		return true;
 	}
 
-	public String getDescrição() {
-		return descrição;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescrição(String descrição) {
-		this.descrição = descrição;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public LocalDate getDataVencimento() {
@@ -133,13 +147,5 @@ public class Lancamento {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-	
-	@ManyToOne
-	@JoinColumn(name = "codigo_categoria")
-	private Categoria categoria;
-	
-	@ManyToOne
-	@JoinColumn(name = "codigo_pessoa")
-	private Pessoa pessoa;
 	
 }
