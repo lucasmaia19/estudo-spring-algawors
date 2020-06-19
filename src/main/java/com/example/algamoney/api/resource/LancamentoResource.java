@@ -1,8 +1,5 @@
 package com.example.algamoney.api.resource;
 
-import java.util.List;
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +33,8 @@ public class LancamentoResource {
 	}
 	
 	@GetMapping("{/codigo}")
-	public Optional<Lancamento> buscarPeloCodigo(@PathVariable Long codigo) {
-		return lancamentoRepository.findById(codigo);
+	public Lancamento buscarPeloCodigo(@PathVariable Long codigo) {
+		return lancamentoRepository.findOne(codigo);
 	}
 	
 	@PostMapping
@@ -48,7 +45,7 @@ public class LancamentoResource {
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
-	lancamentoRepository.deleteById(codigo);
-}
+		lancamentoRepository.delete(codigo);
+	}
 	
 }

@@ -1,10 +1,7 @@
 package com.example.algamoney.api.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.algamoney.api.model.Pessoa;
@@ -32,21 +29,7 @@ public class PessoaService {
 	}
 
 	public Pessoa buscaPessoaPeloCodigo(Long codigo) {
-
-		
-//		return pessoaRepository.findById(codigo).get();
-		
-		// v01
-//		Optional<Pessoa> pessoalOptional = pessoaRepository.findById(codigo);
-//		if (pessoalOptional.isPresent()) {
-//			return pessoalOptional.get();
-//		}
-
-		// v02
-		Pessoa pessoa = pessoaRepository.findById(codigo)
-			.orElseThrow(() -> new EmptyResultDataAccessException(1));
-
-		return pessoa;
+		return pessoaRepository.findOne(codigo);
 	}
 
 }

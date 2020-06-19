@@ -1,12 +1,10 @@
 package com.example.algamoney.api.resource;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,14 +45,14 @@ public class PessoaResource {
 	}
 	
 	@GetMapping("/{codigo}")
-	public Optional<Pessoa> buscarPeloCodigo(@PathVariable Long codigo) {
-		return pessoaRepository.findById(codigo);
+	public Pessoa buscarPeloCodigo(@PathVariable Long codigo) {
+		return pessoaRepository.findOne(codigo);
 	}	
 	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
-	pessoaRepository.deleteById(codigo);
+	pessoaRepository.delete(codigo);
 }
 	
 	@PutMapping("/{codigo}")
