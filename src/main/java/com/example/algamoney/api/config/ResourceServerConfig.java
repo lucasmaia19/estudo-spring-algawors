@@ -31,15 +31,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
-	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/categorias").permitAll()
-				.anyRequest().authenticated()
-				.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.csrf().disable();
-	}
+//	@Override
+//	public void configure(HttpSecurity http) throws Exception {
+//		http.authorizeRequests()
+//				.antMatchers("/categorias").permitAll()
+//				.anyRequest().authenticated()
+//				.and()
+//			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+//			.csrf().disable();
+//	}
 	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
