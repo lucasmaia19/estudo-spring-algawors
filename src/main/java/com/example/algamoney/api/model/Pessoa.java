@@ -11,6 +11,8 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Getter;
+
 @Entity
 @Table(name = "pessoa")
 public class Pessoa {
